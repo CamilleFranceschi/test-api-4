@@ -1,10 +1,12 @@
 class Api::V1::ProductsController < Api::V1::BaseController
+  # skip_before_action :authenticate_user!, only: [:index]
   before_action :authenticate_user!, only: [:update, :destroy]
   before_action :set_product, only: [:show, :update, :destroy]
   def index
-    # @products=policy_scope(Product).order(name: :asc)
-    @products=Product.all.order(name: :asc)
+    @products= Product.all
   end
+    # @products=policy_scope(Product).order(name: :asc)
+
 
   def show
   end
