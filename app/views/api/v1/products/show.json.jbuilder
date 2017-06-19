@@ -1,1 +1,1 @@
-json.extract! @product, :id, :name,:rating
+json.extract! @product,:name,:rating

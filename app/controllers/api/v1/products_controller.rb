@@ -1,6 +1,7 @@
 class Api::V1::ProductsController < Api::V1::BaseController
   # skip_before_action :authenticate_user!, only: [:index]
-  before_action :authenticate_user!, only: [:update, :destroy]
+  acts_as_token_authentication_handler_for User, except: [ :index, :show ]
+  # before_action :authenticate_user!, only: [:update, :destroy]
   before_action :set_product, only: [:show, :update, :destroy]
   def index
     @products= Product.all
@@ -22,7 +23,7 @@ class Api::V1::ProductsController < Api::V1::BaseController
   def create
     @product = Product.new(product_params)
     @product.user = current_user
-    authorize @product
+    # authorize @product
     if @product.save
       render :show, status: :created
     else

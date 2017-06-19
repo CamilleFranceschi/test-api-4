@@ -1,5 +1,5 @@
 class Api::V1::BaseController < ActionController::Base
-  before_action :authenticate_user!
+  # before_action :authenticate_user!
   # include Pundit
   #
   # after_action :verify_authorized, except: :index
